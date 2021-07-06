@@ -4,22 +4,22 @@ services:
   - docker
 
 before_install:
-  - docker build -t jasonportilla/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t portillaj/react-test -f ./client/Dockerfile.dev ./client
   
 script:
-  - docker run -e CI=true jasonportilla/react-test npm test -- --coverage
+  - docker run -e CI=true portillaj/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t jasonportilla/multi-client ./client
-  - docker build -t jasonportilla/multi-nginx ./nginx
-  - docker build -t jasonportilla/multi-server ./server
-  - docker build -t jasonportilla/multi-worker ./worker
+  - docker build -t portillaj/multi-client ./client
+  - docker build -t portillaj/multi-nginx ./nginx
+  - docker build -t portillaj/multi-server ./server
+  - docker build -t portillaj/multi-worker ./worker
 
   # login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
   # take those images and push them to docker hub
-  - docker push jasonportilla/multi-client
-  - docker push jasonportilla/multi-nginx
-  - docker push jasonportilla/multi-server
-  - docker push jasonportilla/multi-worker
+  - docker push portillaj/multi-client
+  - docker push portillaj/multi-nginx
+  - docker push portillaj/multi-server
+  - docker push portillaj/multi-worker
