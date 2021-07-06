@@ -15,10 +15,11 @@ after_success:
   - docker build -t jasonportilla/multi-server ./server
   - docker build -t jasonportilla/multi-worker ./worker
 
-  # Log in to the docker CLI
+  # login to docker hub
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  # Take those images and push them to docker hub
-  - docker push jasonportilla/multi-client
-  - docker push jasonportilla/multi-nginx
-  - docker push jasonportilla/multi-server
-  - docker push jasonportilla/multi-worker
+
+  # take those images and push them to docker hub
+  - docker push miloscpt/multi-client
+  - docker push miloscpt/multi-nginx
+  - docker push miloscpt/multi-server
+  - docker push miloscpt/multi-worker
